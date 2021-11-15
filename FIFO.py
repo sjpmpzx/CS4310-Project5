@@ -1,17 +1,34 @@
-import numpy as np
-n=10
-A=np.random.randint(1,50,(n+1,n+1))
-A=np.mat(A)
-AK=[]
-AK.append(A)
-for k in range(1,n):
-    v=AK[-1][:,k]
-    Mk=np.mat(np.zeros((n+1,n+1)))
-    for i in range(n+1):
-        Mk[i,i]=1
-    for i in range(k+1,n+1):
-        Mk[i,k]=-v[i]/v[k]
-    temp = Mk*AK[-1]
-    AK.append(temp)
+class FIFOCache(object):
+
+    def __init__(self, capacity=0xffffffff):
+        self.F = capacity
+        self.M = []
+
+    def get(self, page):
+
+        if page in self.M:
+            return page
+        else:
+            if len(self.M) >= self.F:
+                old_page = self.M[0]
+                self.M = self.M[1:]
+
+            self.M.append(page)
+
+            return None   # if : return == None -> Then :page faults
+
+    def print(self):
+        for i in range(0,len(self.M)):
+            print(self.M[len(self.M)-1-i])
+
+
+# test
+fifo = FIFOCache(3)
+print(fifo.get(3))
+print(fifo.get(5))
+print(fifo.get(2))
+print(fifo.get(1))
+print(fifo.get(2))
+print(fifo.get(6))
 
 
