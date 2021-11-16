@@ -32,6 +32,6 @@ page_falut_count = 0
 for p in RS:
     ret = fifo.get(p)
     if ret == None:
-        page_fault_count++
+        page_fault_count += 1
 
 print(page_falut_count)
