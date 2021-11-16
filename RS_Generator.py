@@ -1,6 +1,6 @@
 import random
 
-def gen_rs(e:int, t:float, P=2**20, s=0,  m=200):
+def gen_rs(e:int, t:float, P=2**20, s=0, m=200, path='RS.csv'):
     '''
     P: virtual memory size
     s: starting location
@@ -10,7 +10,7 @@ def gen_rs(e:int, t:float, P=2**20, s=0,  m=200):
     '''
     RS_length = 20
 
-    with open('RS.csv', 'w', encoding='utf-8') as f:
+    with open(path, 'w', encoding='utf-8') as f:
         # repeat until RS of desired length is generated
         for _ in range(RS_length):
             RS = []

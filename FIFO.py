@@ -25,13 +25,17 @@ class FIFOCache(object):
 
 
 # test
-RS = read_rs_from_file()
-fifo = FIFOCache(5)
+def test(path='RS.csv'):
+    RS = read_rs_from_file(path)
+    fifo = FIFOCache(5)
 
-page_fault_count = 0
-for p in RS:
-    ret = fifo.get(p)
-    if ret == None:
-        page_fault_count += 1
+    page_fault_count = 0
+    for p in RS:
+        ret = fifo.get(p)
+        if ret == None:
+            page_fault_count += 1
+    return page_fault_count
 
-print(page_fault_count)
+if __name__ == '__main__':
+    page_falut_count = test()
+    print(page_falut_count)

@@ -1,2 +1,4 @@
-RS.csv
+RS*.csv
+!output/RS*.csv
 __pycache__
+report.docx

@@ -1,5 +1,4 @@
 from RS_Reader import read_rs_from_file
-from queue import Queue
 
 class PageQueue():
     'Implementation of the page queue.'
@@ -23,10 +22,14 @@ class PageQueue():
             else:
                 self.content.append(data)
 
-RS = read_rs_from_file()
-page_queue = PageQueue(5)
+def test(path='RS.csv'):
+    RS = read_rs_from_file(path)
+    page_queue = PageQueue(5)
 
-for p in RS:
-    page_queue.enqueue(p)
+    for p in RS:
+        page_queue.enqueue(p)
+    return page_queue.page_falut_count
 
-print(page_queue.page_falut_count)
+if __name__ == '__main__':
+    page_falut_count = test()
+    print(page_falut_count)
