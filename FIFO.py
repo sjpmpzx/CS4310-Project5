@@ -28,10 +28,10 @@ class FIFOCache(object):
 RS = read_rs_from_file()
 fifo = FIFOCache(5)
 
-page_falut_count = 0
+page_fault_count = 0
 for p in RS:
     ret = fifo.get(p)
     if ret == None:
         page_fault_count += 1
 
-print(page_falut_count)
+print(page_fault_count)
