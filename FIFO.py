@@ -1,3 +1,5 @@
+from RS_Reader import read_rs_from_file
+
 class FIFOCache(object):
 
     def __init__(self, capacity=0xffffffff):
@@ -23,12 +25,13 @@ class FIFOCache(object):
 
 
 # test
-fifo = FIFOCache(3)
-print(fifo.get(3))
-print(fifo.get(5))
-print(fifo.get(2))
-print(fifo.get(1))
-print(fifo.get(2))
-print(fifo.get(6))
+RS = read_rs_from_file()
+fifo = FIFOCache(5)
 
+page_falut_count = 0
+for p in RS:
+    ret = fifo.get(p)
+    if ret == None:
+        page_fault_count++
 
+print(page_falut_count)
